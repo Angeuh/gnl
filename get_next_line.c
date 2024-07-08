@@ -6,7 +6,7 @@
 /*   By: llarrey <llarrey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:33:22 by llarrey           #+#    #+#             */
-/*   Updated: 2024/06/24 18:49:25 by llarrey          ###   ########.fr       */
+/*   Updated: 2024/07/02 14:55:20 by llarrey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ char	*ft_read_to_stash(int fd, char *stash)
 
 	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buff)
+	{
+		free(buff);
 		return (NULL);
+	}
 	bytes = 1;
 	while (!ft_strchr(stash, '\n') && bytes != 0)
 	{
@@ -27,6 +30,7 @@ char	*ft_read_to_stash(int fd, char *stash)
 		if (bytes == -1)
 		{
 			free(buff);
+			free(stash);
 			return (NULL);
 		}
 		buff[bytes] = '\0';
@@ -49,12 +53,13 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	line = ft_get_line(stash);
-	// if (!line && !stash) {
-	// 	free(line);
-	// 	free(stash);
-	// 	return (NULL);
-	// }
 	stash = ft_new_stash(stash);
+	if (!line && !stash)
+	{
+		free(line);
+		free(stash);
+		return (NULL);
+	}
 	return (line);
 }
 

@@ -6,7 +6,7 @@
 /*   By: llarrey <llarrey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:33:37 by llarrey           #+#    #+#             */
-/*   Updated: 2024/06/24 15:25:15 by llarrey          ###   ########.fr       */
+/*   Updated: 2024/06/26 15:06:18 by llarrey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,15 @@ char	*ft_get_line(char *stash)
 		return (NULL);
 	while (stash[i] && stash[i] != '\n')
 		i++;
-	str = (char *)malloc(sizeof(char) * (i + 2));
+	if (stash[i] == '\n')
+		str = (char *)malloc(sizeof(char) * (i + 2));
+	else
+		str = (char *)malloc(sizeof(char) * (i + 1));
 	if (!str)
 		return (NULL);
-	i = 0;
-	while (stash[i] && stash[i] != '\n')
-	{
+	i = -1;
+	while (stash[++i] && stash[i] != '\n')
 		str[i] = stash[i];
-		i++;
-	}
 	if (stash[i] == '\n')
 	{
 		str[i] = stash[i];

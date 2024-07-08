@@ -6,7 +6,7 @@
 /*   By: llarrey <llarrey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:33:22 by llarrey           #+#    #+#             */
-/*   Updated: 2024/06/24 15:41:13 by llarrey          ###   ########.fr       */
+/*   Updated: 2024/06/26 14:50:15 by llarrey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*ft_read_to_stash(int fd, char *stash)
 		if (bytes == -1)
 		{
 			free(buff);
+			free(stash);
 			return (NULL);
 		}
 		buff[bytes] = '\0';
@@ -54,7 +55,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-/*int	main(void)
+/* int	main(void)
 {
 	char	*line;
 	int		i;
@@ -62,25 +63,28 @@ char	*get_next_line(int fd)
 	int		fd2;
 	int		fd3;
 
-	fd1 = open("test.txt", O_RDONLY);
-	//fd2 = open("tests/test2.txt", O_RDONLY);
-	//fd3 = open("tests/test3.txt", O_RDONLY);
+	fd1 = open("t.txt", O_RDONLY);
+	fd2 = open("t2.txt", O_RDONLY);
+	fd3 = open("t3.txt", O_RDONLY);
 	i = 1;
 	while (i < 7)
 	{
 		line = get_next_line(fd1);
 		printf("line [%02d]: %s", i, line);
-		free(line);
-		//line = get_next_line(fd2);
-		//printf("line [%02d]: %s", i, line);
-		//free(line);
-		//line = get_next_line(fd3);
-		//printf("line [%02d]: %s", i, line);
-		//free(line);
+		if (line)
+			free(line);
+		line = get_next_line(fd2);
+		printf("line [%02d]: %s", i, line);
+		if (line)
+			free(line);
+		line = get_next_line(fd3);
+		printf("line [%02d]: %s", i, line);
+		if (line)
+			free(line);
 		i++;
 	}
 	close(fd1);
-	//close(fd2);
-	//close(fd3);
+	close(fd2);
+	close(fd3);
 	return (0);
-}*/
+} */

@@ -6,7 +6,7 @@
 /*   By: llarrey <llarrey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 11:33:37 by llarrey           #+#    #+#             */
-/*   Updated: 2024/06/21 16:32:24 by llarrey          ###   ########.fr       */
+/*   Updated: 2024/06/25 10:31:34 by llarrey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*ft_strjoin(char *stash, char *buff)
 		return (NULL);
 	str = malloc(sizeof(char) * ((ft_strlen(stash) + ft_strlen(buff)) + 1));
 	if (str == NULL)
-		return (NULL);
+		return (free(stash), NULL);
 	i = -1;
 	j = 0;
 	if (stash)
@@ -114,7 +114,7 @@ char	*ft_new_stash(char *stash)
 	}
 	str = (char *)malloc(sizeof(char) * (ft_strlen(stash) - i + 1));
 	if (!str)
-		return (NULL);
+		return (free(stash), NULL);
 	i++;
 	j = 0;
 	while (stash[i])
